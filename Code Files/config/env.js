@@ -1,8 +1,17 @@
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Load environment variables from .env file
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+const fs = require('fs');
+const localEnvPath = path.resolve(__dirname, '../.env');
+const parentEnvPath = path.resolve(__dirname, '../../.env');
+
+if (fs.existsSync(localEnvPath)) {
+  dotenv.config({ path: localEnvPath });
+} else if (fs.existsSync(parentEnvPath)) {
+  dotenv.config({ path: parentEnvPath });
+} else {
+  dotenv.config();
+}
 
 const env = {
   PORT: process.env.PORT || 8000,

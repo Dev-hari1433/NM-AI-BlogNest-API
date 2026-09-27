@@ -108,61 +108,71 @@ NM_AIblognest/
 ├── Problem.png                   # Problem Statement Visual Chart
 ├── README.md                     # Comprehensive Evaluator Documentation
 ├── Solution.png                  # Proposed Solution Architecture Diagram
-└── server/
-    ├── .env.example              # Sanitized environment template for reviewers
-    ├── package.json              # Project dependencies, metadata & test scripts
-    ├── package-lock.json         # Pinned reproducible dependency graph
-    ├── server.js                 # Application entry point with graceful shutdown
-    ├── scripts/
-    │   └── seed.js               # Database seeder (provisions 4 roles, categories, blogs)
-    └── src/
-        ├── app.js                # Express app assembler, middleware chains & error boundary
-        ├── config/
-        │   ├── db.js             # Mongoose connection with Windows DNS resolver fallback
-        │   ├── env.js            # Boot-time environment variable schema validator
-        │   └── gemini.js         # Google GenAI SDK initializer (@google/genai)
-        ├── controllers/
-        │   ├── aiController.js         # Endpoints for Gemini blog generation & summarization
-        │   ├── authController.js       # Register, Login (JWT issuance), Profile & Logout
-        │   ├── blogController.js       # Blog CRUD, pagination, filtering & publish workflows
-        │   ├── categoryController.js   # Category management endpoints
-        │   ├── commentController.js    # Threaded blog comments & admin spam moderation
-        │   ├── searchController.js     # Dual search (Lucene Full-Text + Vector Cosine)
-        │   └── userController.js       # Profile management & admin role assignments
-        ├── middleware/
-        │   ├── authMiddleware.js       # Bearer JWT verification & optional auth mode
-        │   ├── errorMiddleware.js      # Global error boundary (400, 401, 403, 404, 409, 500)
-        │   ├── rateLimitMiddleware.js  # Sliding-window rate limiter (100 / 15m, AI: 5 / 1m)
-        │   ├── roleMiddleware.js       # Role-Based Access Control enforcer (403 Forbidden)
-        │   ├── sanitizeMiddleware.js   # Recursive XSS sanitizer (neutralizes <script> tags)
-        │   ├── validateMiddleware.js   # Legacy compatibility validator export
-        │   └── validationMiddleware.js # MongoDB ObjectId format validator
-        ├── models/
-        │   ├── Blog.js                 # Blog schema with slugs, tags, status & User/Category refs
-        │   ├── Category.js             # Taxonomy schema with unique indexing & slugs
-        │   ├── Comment.js              # Threaded comments with moderation enum (approved/spam)
-        │   ├── Embedding.js            # 768-dimensional float vector schema linked to Blog
-        │   └── User.js                 # User schema with salted bcrypt hashing & 4-tier roles
-        ├── routes/
-        │   ├── aiRoutes.js             # AI generation & summarization routes
-        │   ├── authRoutes.js           # Authentication & registration routes
-        │   ├── blogRoutes.js           # Blog management & public feed routes
-        │   ├── categoryRoutes.js       # Taxonomy category routes
-        │   ├── commentRoutes.js        # Blog comment & moderation routes
-        │   ├── searchRoutes.js         # Full-text & semantic vector search routes
-        │   └── userRoutes.js           # Profile & administrator user management routes
-        ├── services/
-        │   ├── blogService.js          # Blog CRUD, author ownership & status transitions
-        │   ├── categoryService.js      # Category business logic & duplicate checking
-        │   ├── commentService.js       # Comment operations & spam flag moderation
-        │   ├── embeddingService.js     # Real-time 768-dim vector generation & Atlas upserts
-        │   ├── geminiService.js        # Prompt engineering templates for gemini-2.5-flash
-        │   ├── index.js                # Centralized service barrel export
-        │   ├── searchService.js        # MongoDB Atlas $search Lucene query engine
-        │   ├── userService.js          # User database logic & role updates
-        │   └── vectorSearchService.js  # MongoDB Atlas $vectorSearch Cosine Similarity
-        └── utils/
-            └── logger.js               # Structured logger with credential masking & timing
+├── Code Files/                   # Complete backend source code & runtime environment
+│   ├── .env.example              # Sanitized environment template for reviewers
+│   ├── app.js                    # Express app assembler, middleware chains & error boundary
+│   ├── server.js                 # Application entry point with graceful shutdown
+│   ├── package.json              # Project dependencies, metadata & test scripts
+│   ├── package-lock.json         # Pinned reproducible dependency graph
+│   ├── config/
+│   │   ├── db.js                 # Mongoose connection with Windows DNS resolver fallback
+│   │   ├── env.js                # Boot-time environment variable schema validator
+│   │   └── gemini.js             # Google GenAI SDK initializer (@google/genai)
+│   ├── controllers/
+│   │   ├── aiController.js       # Endpoints for Gemini blog generation & summarization
+│   │   ├── authController.js     # Register, Login (JWT issuance), Profile & Logout
+│   │   ├── blogController.js     # Blog CRUD, pagination, filtering & publish workflows
+│   │   ├── categoryController.js # Category management endpoints
+│   │   ├── commentController.js  # Threaded blog comments & admin spam moderation
+│   │   ├── searchController.js   # Dual search (Lucene Full-Text + Vector Cosine)
+│   │   └── userController.js     # Profile management & admin role assignments
+│   ├── middleware/
+│   │   ├── authMiddleware.js     # Bearer JWT verification & optional auth mode
+│   │   ├── errorMiddleware.js    # Global error boundary (400, 401, 403, 404, 409, 500)
+│   │   ├── rateLimitMiddleware.js# Sliding-window rate limiter (100 / 15m, AI: 5 / 1m)
+│   │   ├── roleMiddleware.js     # Role-Based Access Control enforcer (403 Forbidden)
+│   │   ├── sanitizeMiddleware.js # Recursive XSS sanitizer (neutralizes <script> tags)
+│   │   ├── validateMiddleware.js # Legacy compatibility validator export
+│   │   └── validationMiddleware.js# MongoDB ObjectId format validator
+│   ├── models/
+│   │   ├── Blog.js               # Blog schema with slugs, tags, status & User/Category refs
+│   │   ├── Category.js           # Taxonomy schema with unique indexing & slugs
+│   │   ├── Comment.js            # Threaded comments with moderation enum (approved/spam)
+│   │   ├── Embedding.js          # 768-dimensional float vector schema linked to Blog
+│   │   └── User.js               # User schema with salted bcrypt hashing & 4-tier roles
+│   ├── routes/
+│   │   ├── aiRoutes.js           # AI generation & summarization routes
+│   │   ├── authRoutes.js         # Authentication & registration routes
+│   │   ├── blogRoutes.js         # Blog management & public feed routes
+│   │   ├── categoryRoutes.js     # Taxonomy category routes
+│   │   ├── commentRoutes.js      # Blog comment & moderation routes
+│   │   ├── searchRoutes.js       # Full-text & semantic vector search routes
+│   │   └── userRoutes.js         # Profile & administrator user management routes
+│   ├── scripts/
+│   │   └── seed.js               # Database seeder (provisions 4 roles, categories, blogs)
+│   ├── services/
+│   │   ├── blogService.js        # Blog CRUD, author ownership & status transitions
+│   │   ├── categoryService.js    # Category business logic & duplicate checking
+│   │   ├── commentService.js     # Comment operations & spam flag moderation
+│   │   ├── embeddingService.js   # Real-time 768-dim vector generation & Atlas upserts
+│   │   ├── geminiService.js      # Prompt engineering templates for gemini-2.5-flash
+│   │   ├── index.js              # Centralized service barrel export
+│   │   ├── searchService.js      # MongoDB Atlas $search Lucene query engine
+│   │   ├── userService.js        # User database logic & role updates
+│   │   └── vectorSearchService.js# MongoDB Atlas $vectorSearch Cosine Similarity
+│   └── utils/
+│       └── logger.js             # Structured logger with credential masking & timing
+├── Final Documentation/
+│   └── Final_Documentation_AI Blognest API.docx  # Comprehensive final project report
+└── Phase Wise Documentation/     # All 8 milestone phase submission packages
+    ├── Brainstorming_and_Ideation Phase/
+    ├── Project_Demonstration Phase/
+    ├── Project_Design Phase/
+    ├── Project_Development Phase/
+    ├── Project_Documentation Phase/
+    ├── Project_Planning Phase/
+    ├── Project_Testing Phase/
+    └── Requirement_Analysis Phase/
 ```
 
 ---
@@ -196,15 +206,15 @@ Follow these steps to run the complete project locally:
 ### 2. Installation
 ```powershell
 # 1. Clone repository
-git clone https://github.com/your-username/NM_AIblognest.git
-cd NM_AIblognest/server
+git clone https://github.com/Dev-hari1433/NM-AI-BlogNest-API.git
+cd NM-AI-BlogNest-API/"Code Files"
 
 # 2. Install dependencies
 npm install
 ```
 
 ### 3. Environment Configuration
-Create a `.env` file inside the `server/` directory (refer to `.env.example`):
+Create a `.env` file inside the `Code Files/` directory (refer to `.env.example`):
 ```env
 PORT=8000
 NODE_ENV=development

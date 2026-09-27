@@ -7,11 +7,11 @@ if (process.platform === 'win32') {
 
 require('dotenv').config();
 const mongoose = require('mongoose');
-const User = require('../src/models/User');
-const Category = require('../src/models/Category');
-const Blog = require('../src/models/Blog');
-const Embedding = require('../src/models/Embedding');
-const { generateEmbedding } = require('../src/services/embeddingService');
+const User = require('../models/User');
+const Category = require('../models/Category');
+const Blog = require('../models/Blog');
+const Embedding = require('../models/Embedding');
+const { generateEmbedding } = require('../services/embeddingService');
 
 async function seedDatabase() {
   console.log('Connecting to MongoDB Atlas...');
