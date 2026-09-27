@@ -16,6 +16,10 @@ Code Files/.env
 # Temporary root lock files (the master copy is in Final Documentation/)
 /Final_Documentation_AI Blognest API.docx
 
+# Archives
+*.zip
+*.tar.gz
+
 # Logs
 *.log
 logs/
