@@ -5,13 +5,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Environment and sensitive secrets (CRITICAL FOR GITHUB)
-.env
-.env.*
-.env.local
-.env.*.local
-Code Files/.env
-**/.env
+# Backup and copy folders
+* - Copy/
+* - Copy (*/
+Code Files - Copy/
 
 # Temporary root lock files (the master copy is in Final Documentation/)
 /Final_Documentation_AI Blognest API.docx
