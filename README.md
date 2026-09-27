@@ -109,6 +109,7 @@ NM_AIblognest/
 ├── README.md                     # Comprehensive Evaluator Documentation
 ├── Solution.png                  # Proposed Solution Architecture Diagram
 ├── Code Files/                   # Complete backend source code & runtime environment
+│   ├── .env                      # Pre-configured environment variables for evaluator testing
 │   ├── .env.example              # Sanitized environment template for reviewers
 │   ├── app.js                    # Express app assembler, middleware chains & error boundary
 │   ├── server.js                 # Application entry point with graceful shutdown
